@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
                 10000,
                 new CurrentWeatherData.Wind(1, 0),
                 new CurrentWeatherData.Cloud(0),
-                1523539800,
-                new CurrentWeatherData.Sys(1, 7325, 0.0018, "RU",1523500278,1523550622),
-                524901,"Moscow", 200);
+                (long)1523539800*1000+10800000,
+                new CurrentWeatherData.Sys(1, 7325, 0.0018, "RU",(long)1523500278*1000+10800000,(long)1523550622*1000+10800000),
+                524901,"Moscow", 200); //init CurrentWeatherData
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        temp = (TextView) findViewById(R.id.Temp);
+        temp = findViewById(R.id.Temp);
         ddate = findViewById(R.id.Date);
         wind = findViewById(R.id.Wind);
         cloudiness = findViewById(R.id.Cloudiness);
@@ -36,25 +36,25 @@ public class MainActivity extends AppCompatActivity {
         humidity = findViewById(R.id.Humidity);
         sunrise = findViewById(R.id.Sunrise);
         sunset = findViewById(R.id.Sunset);
-        coords = findViewById(R.id.Coords);
+        coords = findViewById(R.id.Coords); //init textViews
         outPut();
     }
 
     @SuppressLint("SetTextI18n")
     private void outPut(){
         temp.setText("Температура: " + currentWeatherData.getMain().getTemp());
-//        ddate.setText("Дата: " + new Date(currentWeatherData.getDate()).toString());
-        ddate.setText("Время: 18:13 Apr 12");
+        ddate.setText("Дата: " + new Date(currentWeatherData.getDate()).toString());
+//        ddate.setText("Время: 18:13 Apr 12");
         if (currentWeatherData.getWind().getDeg() == 0) {
             wind.setText("Ветер: " + currentWeatherData.getWind().getSpeed());
         }else wind.setText("Ветер: " + currentWeatherData.getWind().getSpeed() + " Направление: " + currentWeatherData.getWind().getDeg());
         cloudiness.setText("Погода: " + currentWeatherData.getWeather().getDescription());
         pressure.setText("Давление: " + currentWeatherData.getMain().getPressure() + "hpa");
         humidity.setText("Влажность воздуха: " + currentWeatherData.getMain().getHumidity() + "%");
-//        sunrise.setText("Восход: " + new Date(currentWeatherData.getSys().getSunrise()).toString());
-//        sunset.setText("Закат: " + new Date(currentWeatherData.getSys().getSunset()).toString());
-        sunrise.setText("Восход: 05:31");
-        sunset.setText("Закат: 19:30");
+        sunrise.setText("Восход: " + new Date(currentWeatherData.getSys().getSunrise()).toString());
+        sunset.setText("Закат: " + new Date(currentWeatherData.getSys().getSunset()).toString());
+//        sunrise.setText("Восход: 05:31");
+//        sunset.setText("Закат: 19:30");
         coords.setText("Координаты: [" + currentWeatherData.getCoord().getLon() + "," + currentWeatherData.getCoord().getLat() + "]");
     }
 }
