@@ -2,4 +2,6 @@
     <string name="app_name">FirstLesson</string>
     <string name="TextView">Hello World!</string>
     <string name="button">Кнопка</string>
+    <string name="text">Текст</string>
+    <string name="Button">Кнопка</string>
 </resources>

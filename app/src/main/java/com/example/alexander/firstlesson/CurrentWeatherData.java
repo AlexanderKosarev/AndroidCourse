@@ -1,9 +1,16 @@
-package com.example.lib;
+package com.example.alexander.firstlesson;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class CurrentWeatherData {
     public static class Coord{
-        double lon;
-        double lat;
+        @SerializedName("lon")
+        @Expose
+        private double lon;
+        @SerializedName("lat")
+        @Expose
+        private double lat;
 
         public Coord(double lon, double lat) {
             this.lon = lon;
@@ -35,11 +42,18 @@ public class CurrentWeatherData {
         }
     }
     public static class Weather{
-        int id;
-        String main;
-        String description;
-        String icon;
-
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("main")
+        @Expose
+        private String main;
+        @SerializedName("description")
+        @Expose
+        private String description;
+        @SerializedName("icon")
+        @Expose
+        private String icon;
         public Weather(int id, String main, String description, String icon) {
             this.id = id;
             this.main = main;
@@ -90,18 +104,28 @@ public class CurrentWeatherData {
         }
     }
     public static class Main{
-        double temp;
-        double pressure;
-        double humidity;
-        double temp_min;
-        double temp_max;
+        @SerializedName("temp")
+        @Expose
+        private double temp;
+        @SerializedName("pressure")
+        @Expose
+        private double pressure;
+        @SerializedName("humidity")
+        @Expose
+        private double humidity;
+        @SerializedName("temp_min")
+        @Expose
+        private double tempMin;
+        @SerializedName("temp_max")
+        @Expose
+        private double tempMax;
 
-        public Main(double temp, double pressure, double humidity, double temp_min, double temp_max) {
+        public Main(double temp, double pressure, double humidity, double tempMin, double tempMax) {
             this.temp = temp;
             this.pressure = pressure;
             this.humidity = humidity;
-            this.temp_min = temp_min;
-            this.temp_max = temp_max;
+            this.tempMin = tempMin;
+            this.tempMax = tempMax;
         }
 
         public double getTemp() {
@@ -128,20 +152,20 @@ public class CurrentWeatherData {
             this.humidity = humidity;
         }
 
-        public double getTemp_min() {
-            return temp_min;
+        public double getTempMin() {
+            return tempMin;
         }
 
-        public void setTemp_min(double temp_min) {
-            this.temp_min = temp_min;
+        public void setTempMin(double tempMin) {
+            this.tempMin = tempMin;
         }
 
-        public double getTemp_max() {
-            return temp_max;
+        public double getTempMax() {
+            return tempMax;
         }
 
-        public void setTemp_max(double temp_max) {
-            this.temp_max = temp_max;
+        public void setTempMax(double tempMax) {
+            this.tempMax = tempMax;
         }
 
         @Override
@@ -150,14 +174,18 @@ public class CurrentWeatherData {
                     "temp=" + temp +
                     ", pressure=" + pressure +
                     ", humidity=" + humidity +
-                    ", temp_min=" + temp_min +
-                    ", temp_max=" + temp_max +
+                    ", temp_min=" + tempMin +
+                    ", temp_max=" + tempMax +
                     '}';
         }
     }
     public static class Wind{
-        double speed;
-        double deg;
+        @SerializedName("speed")
+        @Expose
+        private double speed;
+        @SerializedName("deg")
+        @Expose
+        private double deg = Double.parseDouble(null);
 
         public Wind(double speed, double deg) {
             this.speed = speed;
@@ -190,7 +218,9 @@ public class CurrentWeatherData {
         }
     }
     public static class Cloud{
-        double all;
+        @SerializedName("all")
+        @Expose
+        private double all;
 
         public Cloud(double all) {
             this.all = all;
@@ -213,12 +243,24 @@ public class CurrentWeatherData {
         }
     }
     public static class Sys{
-        int type;
-        int id;
-        double message;
-        String country;
-        long sunrise;
-        long sunset;
+        @SerializedName("type")
+        @Expose
+        private int type;
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("message")
+        @Expose
+        private double message;
+        @SerializedName("country")
+        @Expose
+        private String country;
+        @SerializedName("sunrise")
+        @Expose
+        private long sunrise;
+        @SerializedName("sunset")
+        @Expose
+        private long sunset;
 
         public Sys(int type, int id, double message, String country, long sunrise, long sunset) {
             this.type = type;
@@ -290,33 +332,59 @@ public class CurrentWeatherData {
         }
     }
 
-    Coord coord;
-    Weather weather;
-    String base;
-    Main main;
-    int visibility;
-    Wind wind;
-    Cloud clouds;
-    long date;
-    Sys sys;
-    int id;
-    String name;
-    int cod;
+    @SerializedName("coord")
+    @Expose
+    private Coord coord;
+    @SerializedName("weather")
+    @Expose
+    private Weather[] weather;
+    @SerializedName("base")
+    @Expose
+    private String base;
+    @SerializedName("main")
+    @Expose
+    private Main main;
+    @SerializedName("visibility")
+    @Expose
+    private int visibility;
+    @SerializedName("wind")
+    @Expose
+    private Wind wind;
+    @SerializedName("clouds")
+    @Expose
+    private Cloud clouds;
+    @SerializedName("date")
+    @Expose
+    private long date;
+    @SerializedName("sys")
+    @Expose
+    private Sys sys;
+    @SerializedName("id")
+    @Expose
+    private int id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("cod")
+    @Expose
+    private int cod;
 
-    public CurrentWeatherData(Coord coord, Weather weather, String base, Main main, int visibility, Wind wind, Cloud clouds, long date, Sys sys, int id, String name, int cod) {
-        this.coord = coord;
-        this.weather = weather;
-        this.base = base;
-        this.main = main;
-        this.visibility = visibility;
-        this.wind = wind;
-        this.clouds = clouds;
-        this.date = date;
-        this.sys = sys;
-        this.id = id;
-        this.name = name;
-        this.cod = cod;
-    }
+//    public CurrentWeatherData(Coord coord, Weather weather, String base, Main main, int visibility, Wind wind, Cloud clouds, long date, Sys sys, int id, String name, int cod) {
+//        this.coord = coord;
+//        this.weather = weather;
+//        this.base = base;
+//        this.main = main;
+//        this.visibility = visibility;
+//        this.wind = wind;
+//        this.clouds = clouds;
+//        this.date = date;
+//        this.sys = sys;
+//        this.id = id;
+//        this.name = name;
+//        this.cod = cod;
+//    }
+
+    //geters and seters
 
     public Coord getCoord() {
         return coord;
@@ -326,11 +394,11 @@ public class CurrentWeatherData {
         this.coord = coord;
     }
 
-    public Weather getWeather() {
+    public Weather[] getWeather() {
         return weather;
     }
 
-    public void setWeather(Weather weather) {
+    public void setWeather(Weather[] weather) {
         this.weather = weather;
     }
 
