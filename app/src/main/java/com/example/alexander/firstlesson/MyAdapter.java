@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RemindViewHolder>{
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.RemindViewHolder holder, int position) {
+        holder.position = position;
         holder.cityTV.setText(data.get(position).getName());
         if (data.get(position).getMain().getTempMin() > 0)
             holder.tempTV.setText("+"+data.get(position).getMain().getTempMin()+"..+"+data.get(position).getMain().getTempMax());
@@ -56,11 +59,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RemindViewHolder>{
     }
 
     public class RemindViewHolder extends RecyclerView.ViewHolder{
+        int position;
         CardView cardView;
         TextView cityTV, tempTV, presTV, windTV;
         ImageView imageView;
 
-        public RemindViewHolder(View itemView) {
+        public RemindViewHolder(final View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
             cityTV = itemView.findViewById(R.id.city);
@@ -69,6 +73,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RemindViewHolder>{
             windTV = itemView.findViewById(R.id.wind);
             imageView = itemView.findViewById(R.id.imageView);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(itemView.getContext(), "Выбран "+data.get(position).getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
