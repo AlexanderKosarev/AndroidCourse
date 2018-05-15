@@ -40,8 +40,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RemindViewHolder>{
         else if (data.get(position).getMain().getTempMax()<0)
             holder.tempTV.setText(data.get(position).getMain().getTempMin()+".."+data.get(position).getMain().getTempMax());
         else holder.tempTV.setText(data.get(position).getMain().getTempMin()+"..+"+data.get(position).getMain().getTempMax());
-        holder.presTV.setText(holder.presTV.getText()+""+data.get(position).getMain().getPressure()+" hpa");
-        holder.windTV.setText(holder.windTV.getText()+""+data.get(position).getWind().getSpeed()+"m/s");
+        holder.presTV.setText("Pressure: "+data.get(position).getMain().getPressure()+" hpa");
+        holder.windTV.setText("Wind: "+data.get(position).getWind().getSpeed()+"m/s");
         Picasso.get().load("http://openweathermap.org/img/w/"+data.get(position).getWeather()[0].getIcon()+".png").into(holder.imageView);
     }
 
